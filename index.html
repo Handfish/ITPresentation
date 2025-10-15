@@ -1,0 +1,2038 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>IT Department Improvements: The Value of High Performers</title>
+  <meta name="description" content="A presentation on the importance of promoting high performers.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Reveal.js Core and Theme CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.css" id="theme">
+
+  <!-- Google Font for Cinematic Scroll -->
+  <link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet">
+
+  <style>
+    /* ADD THIS CSS TO YOUR <HEAD> STYLE BLOCK */
+    .images-container.grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      /* 2 equal columns */
+      grid-template-rows: repeat(2, 1fr);
+      /* 2 equal rows */
+      gap: 1.5vw;
+      top: 10%;
+      /* Start grid lower on the page */
+      left: 10%;
+      /* Position on the right side */
+      width: 80%;
+      /* Occupy the right 40% of the slide */
+      height: 80%;
+      /* Adjust height for two rows */
+      padding: 1vh;
+    }
+
+    /* ADD THIS CSS TO YOUR <HEAD> STYLE BLOCK */
+    .images-container.grid-hero-right {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      /* First column is twice as wide */
+      grid-template-rows: repeat(2, 1fr);
+      gap: 1.5vw;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+    }
+
+    /* Make the first image in the grid span both rows */
+    .images-container.grid-hero-right> :first-child {
+      grid-row: span 2;
+    }
+
+    .thumbnail-gallery-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1vh 1vw;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      z-index: 15;
+      /* Ensure it's above the text but can be below other overlays */
+    }
+
+    .thumbnail-image {
+      height: 45px;
+      /* Adjust size as needed */
+      border-radius: 6px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease;
+    }
+
+    .thumbnail-image:hover {
+      transform: scale(1.2);
+      z-index: 20;
+    }
+
+
+    /* Make images side by side if preferred */
+    .slide-video {
+      pointer-events: auto;
+    }
+
+    /* --- VIDEO OVERLAY STYLE --- */
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 90vw;
+      height: 90vh;
+      object-fit: contain;
+      z-index: 100;
+      /* High z-index to be on top of everything */
+      pointer-events: none;
+      /* Allows clicking through the video */
+    }
+
+    .scaleup {
+      transform: scale(1.4);
+      transform-origin: center center;
+    }
+
+    .scaleupy {
+      transform: scale(1.4, 3);
+      /* Scales x by 1.4 and y by 3 */
+      transform-origin: center center;
+    }
+
+    .scaleup2 {
+      transform: scale(1.6);
+      transform-origin: center center;
+    }
+
+
+
+
+    .images-container.side-by-side2 {
+      flex-direction: row;
+      gap: 2vw;
+      width: 70%;
+      height: 80%;
+      top: 10%;
+      left: 15%;
+      padding: 2vh;
+    }
+
+    /* --- SLIDE 1: FLEXBOX LAYOUT --- */
+
+    .images-container.side-by-side {
+      flex-direction: row;
+      gap: 2vw;
+      width: 70%;
+      height: 60%;
+      top: 20%;
+      left: 15%;
+      padding: 2vh;
+    }
+
+    /* --- SLIDE 1: FLEXBOX LAYOUT --- */
+    .flex-container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 2vw;
+      width: 100%;
+      height: 100%;
+    }
+
+    .quote-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      font-size: 1.5vw;
+    }
+
+    .quote-box h3 {
+      font-size: 1.8vw;
+    }
+
+    /* --- OVERLAY LAYOUT FOR IMAGES OVER TEXT --- */
+    .main-content {
+      position: relative;
+      flex-grow: 1;
+      width: 100%;
+      height: 100%;
+    }
+
+    .text-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* IMAGE OVERLAY CONTAINER */
+    .images-container {
+      position: absolute;
+      top: 5%;
+      left: 20%;
+      width: 75%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 3vh;
+      padding: 3vh;
+      box-sizing: border-box;
+      z-index: 10;
+      pointer-events: none;
+      /* Allows clicking through to text if needed */
+    }
+
+    .slide-image {
+      flex: 1;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      /* Re-enable pointer events for images */
+    }
+
+    /* Hover effect for images */
+    .slide-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Alternative positioning options */
+    .images-container.top-right {
+      top: 2vh;
+      left: auto;
+      right: 2vw;
+      width: 40%;
+      height: auto;
+    }
+
+    .images-container.bottom-right {
+      top: auto;
+      bottom: 4vh;
+      /* More bottom margin */
+      left: auto;
+      right: 2vw;
+      width: 40%;
+      height: auto;
+    }
+
+    .images-container.center-right {
+      top: 50%;
+      left: auto;
+      right: 2vw;
+      width: 40%;
+      height: 60%;
+      transform: translateY(-50%);
+    }
+
+    .images-container.center-screen {
+      top: 10%;
+      left: 25%;
+      width: 50%;
+      height: 75%;
+      /* Leave more bottom space */
+    }
+
+    .images-container.full-overlay {
+      top: 15%;
+      left: 10%;
+      width: 80%;
+      height: 70%;
+    }
+
+    .images-container.center-large {
+      top: 10%;
+      left: 15%;
+      width: 70%;
+      height: 75%;
+    }
+
+    /* Add semi-transparent backdrop for better readability */
+    .images-container.with-backdrop::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      z-index: -1;
+      backdrop-filter: blur(5px);
+    }
+
+    /* --- SLIDE 3: DEFINITIVE ROBUST LAYOUT --- */
+    .slide3-content-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .slide3-content-wrapper h2 {
+      flex-shrink: 0;
+      font-size: clamp(24px, 4vh, 40px);
+      margin-bottom: 2vh;
+    }
+
+    .columns-container-3col {
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      align-items: stretch;
+      gap: 1.5vw;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 10px;
+    }
+
+    .scrollable-y {
+      height: 50vh;
+      /* fixed height to allow scrolling */
+    }
+
+    .column-layout-3col {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid #555;
+      padding: 1vw 1.5vw;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .column-layout-3col h3 {
+      font-size: clamp(14px, 2.3vh, 22px);
+      margin-bottom: 1vh;
+      flex-shrink: 0;
+    }
+
+    .column-layout-3col ul {
+      padding-left: 20px;
+      margin: 0;
+      font-size: clamp(11px, 1.9vh, 16px);
+      line-height: 1.35;
+      flex-grow: 1;
+    }
+
+
+    /* --- SLIDE 2: CINEMATIC SCROLL SETUP --- */
+    .cinematic-container {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      perspective: 600px;
+      overflow: hidden;
+    }
+
+    .cinematic-title {
+      position: absolute;
+      width: 100%;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 4vw;
+      color: #ADD8E6;
+      opacity: 0;
+    }
+
+    .crawl-wrapper {
+      position: absolute;
+      top: 80%;
+      /* Move starting position closer (was 100%) */
+      left: 50%;
+      width: 100%;
+      padding: 0 2vw;
+      box-sizing: border-box;
+      transform-origin: 50% 100%;
+      transform: translateX(-50%) rotateX(8deg);
+      /* Reduced angle from 12deg to 8deg */
+      font-family: 'Pathway+Gothic+One', sans-serif;
+      color: #E0E0E0;
+      text-align: justify;
+      font-size: 3.5vh;
+      line-height: 1.5;
+    }
+
+    .crawl-wrapper .sub-title {
+      text-align: center;
+      font-size: 1.2em;
+      margin-bottom: 1em;
+      color: #FFD700;
+    }
+
+    /* Robust 3-column layout for topic slides */
+    .topic-container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 2vw;
+      width: 100%;
+      height: 100%;
+    }
+
+    .topic-column {
+      flex: 1;
+      min-width: 0;
+      border-left: 3px solid #BE1E2D;
+      padding-left: 1.5vw;
+    }
+
+    .topic-column h3 {
+      font-size: clamp(20px, 3.5vh, 32px);
+      text-align: left;
+      margin-top: 0;
+    }
+
+    .topic-column ul {
+      padding-left: 20px;
+      margin: 0;
+      font-size: clamp(14px, 2.2vh, 20px);
+      line-height: 1.4;
+    }
+
+    /* Main slide wrapper */
+    .slide-content-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide-content-wrapper h2 {
+      flex-shrink: 0;
+      font-size: clamp(24px, 4vh, 40px);
+      margin-bottom: 2vh;
+      z-index: 5;
+      position: relative;
+    }
+
+
+
+    /* Main container for the RUOnlineCon slide layout */
+    .ru-online-con-layout {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      /* Text gets more space than the gallery */
+      grid-template-rows: auto 1fr auto;
+      /* Title, Main Content, Thumbnails */
+      grid-template-areas:
+        "title title"
+        "text  gallery"
+        "thumbs thumbs";
+      height: 100%;
+      width: 100%;
+      gap: 1.5vh 1.5vw;
+    }
+
+    /* Placing the elements into their designated grid areas */
+    .ru-online-con-layout .slide-title {
+      grid-area: title;
+    }
+
+    .ru-online-con-layout .text-content-area {
+      grid-area: text;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ru-online-con-layout .main-gallery-area {
+      grid-area: gallery;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      /* 3 rows for 6 images */
+      gap: 1vh;
+    }
+
+    .ru-online-con-layout .thumbnail-area {
+      grid-area: thumbs;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 1vh;
+      /* A little space at the bottom */
+    }
+
+    /* Adjust text columns to fit within their new container */
+    .text-content-area .topic-container {
+      height: 100%;
+    }
+
+    .text-content-area .topic-column {
+      padding-left: 1vw;
+      border-width: 2px;
+    }
+
+    .text-content-area .topic-column h3 {
+      font-size: clamp(16px, 2.5vh, 24px);
+    }
+
+    .text-content-area .topic-column ul {
+      font-size: clamp(12px, 2vh, 16px);
+    }
+
+    /* Styling for images within the main gallery */
+    .main-gallery-area .gallery-item {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      /* Hide parts of image that don't fit */
+      border-radius: 8px;
+    }
+
+    .main-gallery-area .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Ensure image covers the area, cropping if needed */
+      transition: transform 0.3s ease;
+    }
+
+    .main-gallery-area .gallery-item img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Thumbnail styling remains the same */
+    .thumbnail-area .thumbnail-image {
+      height: 45px;
+      border-radius: 6px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease;
+    }
+
+    .thumbnail-area .thumbnail-image:hover {
+      transform: scale(1.2);
+      z-index: 20;
+    }
+
+    /* ADD THIS CSS TO YOUR <HEAD> STYLE BLOCK */
+
+    /* A 3x2 grid specifically for the RUOnlineConX image gallery overlay */
+    .images-container.gallery-grid-3x2 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 1.5vw;
+      /* Space between images */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!-- SLIDE 1: TITLE -->
+      <section style="text-align: center;">
+        <div class="slide-content-wrapper">
+          <h1>Five Foundational IT Improvements</h1>
+          <p>Fulfilling Core Responsibilities While Driving Transformative Change</p>
+          <br>
+          <p style="font-size: 0.7em;">A 7-Year Journey of Modernization and Impact</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: AGENDA -->
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>The Five Areas of Improvement</h2>
+          <ol>
+            <li><strong>Apps:</strong> Delivering on Core Responsibilities</li>
+            <li><strong>Single Sign On:</strong> Modernizing Authentication & Authorization</li>
+            <li><strong>Tech Stack:</strong> Upgrading Database Tools & Development Languages</li>
+            <li><strong>Containerization & CI:</strong> Creating Reproducible & Automated Builds</li>
+            <li><strong>Open Source & Project Management:</strong> Standardizing Workflows & Mentoring</li>
+          </ol>
+          <aside class="notes">This presentation covers my core contributions and the four major strategic initiatives
+            I've led to fundamentally improve our processes.</aside>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: TOPIC 1 - Apps (Core Responsibilities) -->
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>1. Apps: Delivering on Core Responsibilities</h2>
+          <div class="topic-container">
+            <div class="topic-column">
+              <h3>What is it?</h3>
+              <ul>
+                <li>Consistently delivering on all defined job responsibilities for application development and
+                  maintenance.</li>
+                <li>Providing critical support by maintaining legacy apps, fixing complex issues, and contributing
+                  handwritten solutions.</li>
+                <li>Leading development on key applications</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>What is the impact?</h3>
+              <ul>
+                <li>Ensured operational stability and continuity of critical department services.</li>
+                <li>Served as the consistent, reliable development resource through periods of team turnover.</li>
+                <li>Delivered new features and applications as required by the department's mission.</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>Who has it helped?</h3>
+              <ul>
+                <li><strong>The Department:</strong> Has been able to rely on its applications to function correctly and
+                  consistently.</li>
+                <li><strong>End Users:</strong> Have had uninterrupted access to services and support for their issues.
+                </li>
+                <li><strong>The Team:</strong> Benefited from a stable foundation of maintained legacy systems.</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">This is the foundation. On top of delivering in my defined role, I saw opportunities to
+            improve the very way we work. The next four topics are the strategic improvements I initiated.</aside>
+        </div>
+      </section>
+
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>CMSC Marketplace</h2>
+
+          <div class="main-content">
+            <div class="text-content">
+              <div class="topic-container">
+                <div class="topic-column">
+                  <h3>Workshop & Registration Management</h3>
+                  <ul>
+                    <li><strong>Public & Private Listings:</strong> Searchable workshops for both general public and
+                      specific districts.</li>
+                    <li><strong>Detailed Info:</strong> Includes description, dates, times, location, capacity, and
+                      registration status.</li>
+                    <li><strong>Shopping Cart & Registration:</strong> Add multiple workshops to a cart and register in
+                      one form; handles full-capacity scenarios.</li>
+                    <li><strong>Roster & Capacity Tracking:</strong> Real-time tracking, with downloadable roster PDFs
+                      for authorized users.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>District Contract & Quote Management</h3>
+                  <ul>
+                    <li><strong>Contract Creation:</strong> Manage district contracts and private workshop terms.</li>
+                    <li><strong>Quote Generation:</strong> Bundle multiple workshops and specify costs.</li>
+                    <li><strong>Quote-to-Invoice:</strong> Convert accepted quotes to invoices seamlessly.</li>
+                    <li><strong>Communication:</strong> Email contracts and quotes directly to district contacts.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Financial, Admin & Role Management</h3>
+                  <ul>
+                    <li><strong>Invoicing & Payments:</strong> Automated invoices, payment tracking (POs, checks), and
+                      payment application interface.</li>
+                    <li><strong>Facilitator & Expense Management:</strong> Assign facilitators, track
+                      contracts/payments, and manage external workshop expenses.</li>
+                    <li><strong>Downloadable Docs:</strong> PDFs for invoices, rosters, and records.</li>
+                    <li><strong>Role-Based Access:</strong> Guest/public users vs. admin staff with a comprehensive
+                      dashboard for full marketplace control.</li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Your existing topic-container content -->
+            </div>
+            <div class="images-container side-by-side">
+              <a href="cmsce1.png" target="_blank">
+                <img src="cmsce1.png" alt="CMSC Screenshot 1" class="slide-image fragment">
+              </a>
+              <a href="cmsce2.png" target="_blank">
+                <img src="cmsce2.png" alt="CMSC Screenshot 2" class="slide-image fragment">
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- MODIFIED MAKERSPACE SLIDE -->
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>Makerspace Access System</h2>
+
+          <div class="main-content">
+            <div class="text-content">
+              <div class="topic-container">
+                <div class="topic-column">
+                  <h3>Secure Access & Admin Control</h3>
+                  <ul>
+                    <li>RUID card/fob sign-in via a custom kiosk application.</li>
+                    <li>Dynamic entry form for tracking visit purposes, fully managed by admins.</li>
+                    <li>Role-based permissions for Staff vs. Super Admins.</li>
+                    <li>Granular control over admission rules for different university user types.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Live Monitoring & Real-time Data</h3>
+                  <ul>
+                    <li>A "Live Access System" dashboard shows entry events as they happen.</li>
+                    <li>Utilizes <strong>WebSockets</strong> to push real-time data to all connected staff clients for
+                      instant updates.</li>
+                    <li>Features a staff chat log for seamless team communication.</li>
+                    <li>Logs every access attempt (granted and denied) for a complete audit trail.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>University Reporting & Impact</h3>
+                  <ul>
+                    <li>Generates detailed historical <strong>reports from the Oracle student database</strong>.</li>
+                    <li>Enriches sign-in data with student information to filter by major, school, and gender.</li>
+                    <li>Provides critical analytics for demonstrating the Makerspace's usage and impact.</li>
+                    <li>Delivers at-a-glance daily access statistics for immediate insights.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="images-container side-by-side">
+              <a href="makerspaceOld.png" target="_blank">
+                <img src="makerspaceOld.png" alt="Legacy System Interface" class="slide-image fragment">
+              </a>
+              <a href="makerspaceWebsockets.png" target="_blank">
+                <img src="makerspaceWebsockets.png" alt="Live WebSocket Data Feed" class="slide-image fragment">
+              </a>
+            </div>
+          </div>
+
+          <div class="images-container side-by-side">
+            <a href="inn.png" target="_blank">
+              <img src="inn.png" alt="Live WebSocket Data Feed" class="slide-image fragment">
+            </a>
+          </div>
+
+          <!-- Video Overlay Fragment -->
+          <video class="video-overlay fragment" autoplay muted loop>
+            <source src="makerout2.mp4" type="video/mp4">
+          </video>
+
+      </section>
+
+
+
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>NJ Databook</h2>
+
+          <div class="main-content">
+            <div class="text-content">
+              <div class="topic-container">
+                <div class="topic-column">
+                  <h3>Custom Data Tables & Filtering</h3>
+                  <ul>
+                    <li>Access municipal and school district data for all 565 NJ municipalities.</li>
+                    <li>Select geographies by county, legislative district, or congressional district.</li>
+                    <li>Choose from over 70 variables across 12 indicators to build your dataset.</li>
+                    <li>View trends over time with data spanning multiple years, some back to the 1980s.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Interactive Visualizations</h3>
+                  <ul>
+                    <li>Dynamically build various chart and graph types based on your selected data.</li>
+                    <li>Create color-coded maps for municipal or school data with customizable features.</li>
+                    <li>Visually explore and understand complex statistical trends across New Jersey.</li>
+                    <li>View the raw data table underlying any custom map you create.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Platform Features & User Tools</h3>
+                  <ul>
+                    <li>Secure user registration and login required to access all data tools.</li>
+                    <li>Export and download generated tables, charts, and raw map data for offline use.</li>
+                    <li>Provides a single, centralized source for comprehensive historical and current NJ statistics.
+                    </li>
+                    <li>Administrative backend for managing datasets, indicators, and variables.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="images-container side-by-side">
+              <a href="databook.png" target="_blank">
+                <img src="databook.png" alt="Databook Charts" class="slide-image fragment">
+              </a>
+              <a href="dbook3.png" target="_blank">
+                <img src="dbook3.png" alt="Databook Selections" class="slide-image fragment">
+              </a>
+            </div>
+          </div>
+
+          <!-- Video Overlay Fragment -->
+          <video class="video-overlay fragment" autoplay muted loop>
+            <source src="dbout.mp4" type="video/mp4">
+          </video>
+        </div>
+      </section>
+
+
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>Visiting Students Portal</h2>
+
+          <div class="main-content">
+            <div class="text-content">
+              <div class="topic-container">
+                <div class="topic-column">
+                  <h3>Student Application Workflow</h3>
+                  <ul>
+                    <li>Secure student registration and login portal for new and returning users.</li>
+                    <li>Multi-step, guided application for personal, background, and enrollment info.</li>
+                    <li>Dynamic course selection and management with preference ranking.</li>
+                    <li>User dashboard to track application status and review submitted forms.</li>
+                    <li>Registed new students to the university via the ESS process.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Comprehensive Admin Management</h3>
+                  <ul>
+                    <li>Powerful dashboard for full application lifecycle management.</li>
+                    <li>Searchable and sortable views of all applications by semester and campus.</li>
+                    <li>Detailed application editing, status updates, and internal commenting system.</li>
+                    <li>Secure, role-based access for admins and super-admins with audit trails.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>System Automation & Reporting</h3>
+                  <ul>
+                    <li>Automated email system with customizable templates for status changes.</li>
+                    <li>Configurable system settings for payment processing and semester activation.</li>
+                    <li>Manages student records, including RUIDs, for university integration.</li>
+                    <li>Handles file uploads for required documents like transcripts.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="images-container side-by-side">
+              <a href="reg8081.png" target="_blank">
+                <img src="reg8081.png" alt="Student Application View" class="slide-image fragment">
+              </a>
+              <a href="reg8081admin.png" target="_blank">
+                <img src="reg8081admin.png" alt="Admin Management Dashboard" class="slide-image fragment">
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>Pre-college Programs Portal</h2>
+
+          <div class="main-content">
+            <div class="text-content">
+              <div class="topic-container">
+                <div class="topic-column">
+                  <h3>Advanced Program Discovery</h3>
+                  <ul>
+                    <li>Centralized portal for all pre-college programs and camps at Rutgers.</li>
+                    <li>Powerful search by keyword, grade level, academic interest, and campus.</li>
+                    <li>Enhances college awareness and academic preparedness for K-12 students.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>High-Performance Architecture</h3>
+                  <ul>
+                    <li>Backend powered by <strong>Elasticsearch</strong>, an industry-leading search engine.</li>
+                    <li>Designed for massive scalability, capable of storing and filtering <strong>multi-million
+                        record</strong> datasets.</li>
+                    <li>Ensures instantaneous search results and a smooth user experience, even with vast amounts of
+                      program data.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>User & Admin Experience</h3>
+                  <ul>
+                    <li>Students can easily explore available programs and request more information.</li>
+                    <li>Streamlines the discovery process for parents, students, and school counselors.</li>
+                    <li>Includes an administrative interface for managing programs, tags, and content.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="images-container side-by-side">
+              <a href="precollege.png" target="_blank">
+                <img src="precollege.png" alt="" class="slide-image fragment">
+              </a>
+              <a href="precollege2.png" target="_blank">
+                <img src="precollege2.png" alt="" class="slide-image fragment">
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>Embark: HR Onboarding & Survey Platform</h2>
+
+          <div class="main-content">
+            <div class="text-content">
+              <div class="topic-container">
+                <div class="topic-column">
+                  <h3>Candidate & Job Management</h3>
+                  <ul>
+                    <li><strong>Centralized Dashboard:</strong> At-a-glance view of all active candidates, key metrics,
+                      and onboarding pipeline status.</li>
+                    <li><strong>Job Listing Control:</strong> Create, manage, and filter job listings with specific
+                      requirements for each role.</li>
+                    <li><strong>Candidate Auditing:</strong> A complete workflow for tracking candidates from initial
+                      entry through reference checks to final onboarding.</li>
+                    <li><strong>Role-Based Access:</strong> Granular permissions for HR staff and Supervisors ensure
+                      secure and appropriate data access.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Automated Reference Surveys</h3>
+                  <ul>
+                    <li><strong>Custom Survey Builder:</strong> Design detailed reference surveys with various question
+                      types (text, multiple choice, date, etc.).</li>
+                    <li><strong>Automated Distribution:</strong> Secure, unique links are sent directly to a candidate's
+                      provided references.</li>
+                    <li><strong>Streamlined Review:</strong> A dedicated interface for HR and supervisors to review
+                      submitted answers and provide official approval.</li>
+                    <li><strong>Reduces Manual Work:</strong>
+                      Standardizes the reference check process.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Dynamic Offer Letter Generation</h3>
+                  <ul>
+                    <li><strong>Modular Templating:</strong> Build offer letters using reusable and editable headers,
+                      footers, and body content via a <strong>CKEditor</strong> interface.</li>
+                    <li><strong>Smart Fields:</strong> Automatically populates candidate and job-specific data into the
+                      letter, reducing errors.</li>
+                    <li><strong>DocuSign Integration:</strong> Seamlessly sends the prepared document for official
+                      electronic signature, completing the hiring workflow.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- This container now uses the new grid-2x2 class -->
+            <div class="images-container grid-2x2">
+              <a href="embark.png" target="_blank" class="fragment" data-fragment-index="1">
+                <img src="embark.png" alt="Embark Dashboard" class="slide-image">
+              </a>
+              <a href="embarkSurvey.png" target="_blank" class="fragment" data-fragment-index="2">
+                <img src="embarkSurvey.png" alt="Embark Survey Builder" class="slide-image">
+              </a>
+              <a href="embarkTemplate.png" target="_blank" class="fragment" data-fragment-index="3">
+                <img src="embarkTemplate.png" alt="Embark Template Editor" class="slide-image">
+              </a>
+              <a href="embarkCk.png" target="_blank" class="fragment" data-fragment-index="4">
+                <img src="embarkCk.png" alt="CKEditor Interface" class="slide-image">
+              </a>
+            </div>
+          </div>
+
+          <!-- Video Overlays will appear after the images -->
+          <video class="video-overlay fragment" data-fragment-index="5" autoplay muted loop>
+            <source src="embarkout.mp4" type="video/mp4">
+          </video>
+          <video class="video-overlay fragment" data-fragment-index="6" autoplay muted loop>
+            <source src="embarkout2.mp4" type="video/mp4">
+          </video>
+
+
+        </div>
+      </section>
+
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>RUOnlineConX: Conference Gamification App</h2>
+
+          <div class="main-content">
+            <!-- Text content serves as the base layer -->
+            <div class="text-content">
+              <div class="topic-container">
+                <div class="topic-column">
+                  <h3>Social Engagement & Gamification</h3>
+                  <ul>
+                    <li>Complete objectives and photo challenges to earn points toward prizes.</li>
+                    <li>Create a personal profile and interact with a live social feed of user photos.</li>
+                    <li>Comment on submissions and engage with fellow conference attendees in real-time.</li>
+                    <li>AR displayed 3d Models via QR and hotspots.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Twitter Integration and Content Management</h3>
+                  <ul>
+                    <li>Link your profile directly to your Twitter account for seamless sharing.</li>
+                    <li>Automatically post completed objectives to the official conference hashtag.</li>
+                    <li>Admin managed content approval system to prevent profanity.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Image Gallery: This is a single fragment that appears as an overlay -->
+            <div class="images-container center-large gallery-grid-3x2 fragment" data-fragment-index="1">
+              <a href="screen-0.jpg" target="_blank"><img src="screen-0.jpg" alt="RUOnlineConX Main Screen"
+                  class="slide-image"></a>
+              <a href="screen-1.jpg" target="_blank"><img src="screen-1.jpg" alt="RUOnlineConX Screen 1"
+                  class="slide-image"></a>
+              <a href="screen-2.jpg" target="_blank"><img src="screen-2.jpg" alt="RUOnlineConX Screen 2"
+                  class="slide-image"></a>
+              <a href="screen-3.jpg" target="_blank"><img src="screen-3.jpg" alt="RUOnlineConX Screen 3"
+                  class="slide-image"></a>
+              <a href="screen-4.jpg" target="_blank"><img src="screen-4.jpg" alt="RUOnlineConX Screen 4"
+                  class="slide-image"></a>
+              <a href="bbb.png" target="_blank"><img src="bbb.png" alt="BigBlueButton Integration"
+                  class="slide-image"></a>
+            </div>
+
+
+            <!-- Thumbnail gallery overlay at the bottom -->
+            <div class="thumbnail-gallery-container scaleup">
+              <div class="fragment" data-fragment-index="2">
+                <a href="thumbnailsFromMobileApp/TN_Type_writer.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_Type_writer.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_arglasses.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_arglasses.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_bci.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_bci.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_book.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_book.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_desktop_computer.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_desktop_computer.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_dogtranslator.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_dogtranslator.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_faxmachine.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_faxmachine.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_iphone.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_iphone.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_morse_code.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_morse_code.png" class="thumbnail-image"></a>
+              </div>
+              <div class="fragment" data-fragment-index="3">
+                <a href="thumbnailsFromMobileApp/TN_old_laptop_lopoly.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_old_laptop_lopoly.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_old_phone.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_old_phone.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_oral_history.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_oral_history.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_pencil.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_pencil.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_polaroid.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_polaroid.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_portal.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_portal.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_printingPress.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_printingPress.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_quill.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_quill.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_record_player.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_record_player.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_stone_tablet.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_stone_tablet.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_timemachine.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_timemachine.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_vr_simple.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_vr_simple.png" class="thumbnail-image"></a>
+                <a href="thumbnailsFromMobileApp/TN_whiteboard.png" target="_blank"><img
+                    src="thumbnailsFromMobileApp/TN_whiteboard.png" class="thumbnail-image"></a>
+              </div>
+            </div>
+
+
+
+
+            <!-- Final Video Overlay Fragment -->
+            <video class="video-overlay fragment scaleup2" data-fragment-index="4" autoplay muted loop>
+              <source src="onlinecon.mp4" type="video/mp4">
+            </video>
+          </div>
+      </section>
+
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>CECC Web Scraper & Content Validator</h2>
+
+          <div class="main-content">
+            <div class="text-content">
+              <div class="topic-container">
+                <div class="topic-column">
+                  <h3>What is it?</h3>
+                  <ul>
+                    <li>An automated system that mass-scrapes the Continuing Education (CECC) website.</li>
+                    <li>Intelligently <strong>parses</strong> HTML to extract structured data like course subjects,
+                      program titles, and news articles.</li>
+                    <li>Compiles all information into a comprehensive <strong>master list</strong> in a database.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>What is the impact?</h3>
+                  <ul>
+                    <li><strong>Automated Content Auditing:</strong> Replaces hundreds of hours of manual page checking,
+                      eliminating human error.</li>
+                    <li><strong>Difference Detection:</strong> Automatically compares new scrapes against the master
+                      list to instantly flag any changes, additions, or deletions.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Who has it helped?</h3>
+                  <ul>
+                    <li><strong>Content Managers:</strong> Receive automated reports on content changes instead of
+                      manually searching for them.</li>
+                    <li><strong>The Department:</strong> Maintains a higher standard of accuracy and reliability for its
+                      public-facing web presence.</li>
+                    <li><strong>Students & Public:</strong> Experience a more trustworthy and up-to-date website with
+                      fewer errors or outdated listings.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- A single, large image overlay using the class we created -->
+            <div class="images-container single-large-center fragment">
+              <a href="scraper.png" target="_blank">
+                <img src="scraper.png" alt="CECC Web Scraper output example" class="slide-image">
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+			<section>
+        <div class="slide-content-wrapper">
+          <h2>Course Listings App</h2>
+
+          <div class="main-content">
+            <div class="text-content">
+              <div class="topic-container">
+                <div class="topic-column">
+                  <h3>What is it?</h3>
+                  <ul>
+                    <li>A centralized application for displaying course information on the web.</li>
+                    <li>Features a robust data pipeline process runner built around <strong>Meltano ELT</strong>.</li>
+                    <li>Automatically extracts course data from two distinct systems: the credit course database (<strong>Oracle</strong>) and the non-credit system (<strong>MS SQL Server</strong>).</li>
+                    <li>Provides an admin interface with <strong>bespoke controls</strong> to dynamically filter and configure how courses are displayed in tables.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>What is the impact?</h3>
+                  <ul>
+                    <li><strong>Eliminates Manual Data Entry:</strong> The automated ELT process replaces tedious, error-prone manual updates, saving countless hours of staff time.</li>
+                    <li><strong>Ensures Data Accuracy:</strong> Course listings on the website are always up-to-date, reflecting the latest information from the source databases without delay.</li>
+                    <li><strong>Empowers Admins:</strong> The flexible filtering options allow non-technical staff to create custom course tables for specific audiences without developer help.</li>
+                  </ul>
+                </div>
+                <div class="topic-column">
+                  <h3>Who has it helped?</h3>
+                  <ul>
+                    <li><strong>Content & Program Managers:</strong> Are empowered to create and update their own course listings instantly, without waiting for IT intervention.</li>
+                    <li><strong>The Department:</strong> Can present a unified, professional, and consistently accurate catalog of all its educational offerings to the public.</li>
+                    <li><strong>Prospective Students:</strong> See a clean, comprehensive, and up-to-date course catalog, improving their user experience and trust in the information.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- A single, large image overlay using the class we created -->
+            <div class="images-container single-large-center fragment">
+              <a href="courselistings.png" target="_blank">
+                <img src="courselistings.png" alt="Course Listings App" class="slide-image">
+              </a>
+            </div>
+
+            <div class="images-container single-large-center fragment">
+              <a href="courselistings2.png" target="_blank">
+                <img src="courselistings2.png" alt="Course Listings App" class="slide-image">
+              </a>
+            </div>
+
+            <video class="video-overlay fragment" autoplay muted loop>
+              <source src="clWidget.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 1: HARD-HITTING QUOTES -->
+      <section>
+        <div class="flex-container">
+          "If you are hired to dig holes, and you dig 5x as many holes as your coworkers - the boss is going to say
+          that's great but
+          I hired you to dig holes." - Repeated Sentiment in DoCS
+        </div>
+      </section>
+
+      <!-- SLIDE 2: THE "DEFINITIVE" CINEMATIC SCROLL (ALL QUOTES) -->
+      <section id="cinematic-slide" data-background-image="dark-gradient-background.jpg" data-background-size="cover">
+        <div class="cinematic-container">
+          <p class="cinematic-title">In Defense of Identifying High Performers</p>
+          <div class="crawl-wrapper">
+            <div class="sub-title">The Imperative of High Performers</div>
+            <p>The principle of elevating top talent is a constant in the calculus of success. From the pioneers of
+              Silicon Valley to the leaders of global industry, a clear consensus emerges: the engine of any great
+              organization is its high performers, and the surest path to growth is their advancement. This philosophy
+              has been the cornerstone of our recent improvements...</p>
+            <p><strong>Andy Grove (Intel):</strong> The legendary CEO of Intel championed "constructive confrontation"
+              and radical candor as tools to identify the strongest ideas and performers. His entire management
+              philosophy was based on a meritocracy where the best performers were given the toughest problems and the
+              greatest responsibilities.</p>
+            <p><strong>Ben Horowitz (Andreessen Horowitz):</strong> In "The Hard Thing About Hard Things," Horowitz
+              writes extensively about the need to properly compensate and promote your best people, even when it's
+              difficult, because they represent the standard of performance and culture you want to build.</p>
+            <p><strong>Beth Miller (SmallBizClub):</strong> Advocates for systematic identification and development of
+              high-potential employees through structured mentoring and stretch assignments.</p>
+            <p><strong>Bill Gates (Microsoft):</strong> Built an empire on a simple premise: "We win because we hire
+              talented people." This implies a culture that continuously nurtures and elevates that talent.</p>
+            <p><strong>Brian Chesky (Airbnb):</strong> Argues that leaders should identify their 'favorites' based on
+              merit and performance, elevating them as the standard of quality for the entire organization.</p>
+            <p><strong>Chaka Booker & Ruth Gotian (Forbes Contributors):</strong> Emphasize that leaders must actively
+              create the conditions for growth through stretch assignments, exposure, and autonomy for their high
+              achievers.</p>
+            <p><strong>Darren Ryan (DataDrivenInvestor):</strong> Argues that organizations that fail to identify and
+              promote their best talent create competitive disadvantages and lose market position.</p>
+            <p><strong>David Burkus (Author):</strong> Promotes transparent performance metrics and clear advancement
+              criteria to ensure high performers are properly recognized and elevated.</p>
+            <p><strong>Elon Musk (Tesla, SpaceX):</strong> Looks for "clear evidence of exceptional ability" in every
+              hire. "It is a mistake to hire huge numbers of people to get a complicated job done. Numbers will never
+              compensate for talent in getting the right answer." His hiring philosophy: "Hire great people, not to fill
+              positions, but to solve specific problems."</p>
+            <p><strong>Eric Schmidt (Google):</strong> As CEO, Schmidt focused on hiring "smart creatives" and then
+              creating an environment of organized chaos where their talents could flourish. He argued that the job of
+              management is not to command, but to clear obstacles for the high-impact people on their teams.</p>
+            <p><strong>Forbes (Chaka Booker & Ruth Gotian):</strong> Emphasizes that leaders must actively create the
+              conditions for growth through stretch assignments, exposure, and autonomy for their high achievers.</p>
+            <p><strong>Gallup Research:</strong> Decades of employee engagement research from Gallup consistently show
+              that the opportunity for growth and advancement is a primary driver of retention and productivity,
+              especially for top-quartile employees.</p>
+            <p><strong>Harvard Business Review:</strong> Warns leaders to "Stop Ignoring Your High Performers," as they
+              require new challenges and visible pathways to remain engaged and motivated.</p>
+            <p><strong>Hendrith Vanlon Smith Jr.:</strong> Believes that organizational success is directly correlated
+              with leadership's ability to spot, develop, and promote exceptional talent from within.</p>
+            <p><strong>Indra Nooyi (PepsiCo):</strong> Believed in raising the standard for everybody, creating an
+              environment where people can excel and aspire to reach the highest levels of leadership.</p>
+            <p><strong>Jack Welch (General Electric):</strong> Known for his "rank and yank" system and philosophy of
+              identifying the top 20% of performers and investing heavily in their development.</p>
+            <p><strong>Jane Sparrow (Forbes Contributor):</strong> Emphasizes the critical importance of succession
+              planning that identifies high performers early and creates clear pathways to leadership roles.</p>
+            <p><strong>Jeff Bezos (Amazon):</strong> Created a culture of raising the bar with every hire. The logical
+              conclusion is that those who consistently raise this bar internally are the ones who must be promoted to
+              lead.</p>
+            <p><strong>Jim Collins ('Good to Great'):</strong> Famously stated leaders must "get the right people on the
+              bus... and the right people in the right seats." Promotion is the ultimate expression of putting your best
+              people in the seats with the most impact.</p>
+            <p><strong>John Hartley (Medium Contributor):</strong> Advocates for performance-based promotion systems
+              that eliminate bias and focus purely on measurable results and potential.</p>
+            <p><strong>Karin Hurt & David Dye:</strong> Co-authors who promote "winning well" by ensuring that high
+              performers are given increasingly challenging opportunities that match their capabilities.</p>
+            <p><strong>Larry Page (Google):</strong> Stated a leader's job is to "make sure everybody in the company has
+              great opportunities" to make a meaningful impact.</p>
+            <p><strong>Marissa Mayer (Yahoo/Google):</strong> Believed a company's trajectory is set by its team's
+              quality, making the promotion of top contributors into leaders critical for scaling excellence.</p>
+            <p><strong>Mark Zuckerberg (Meta):</strong> Is focused on making sure "people have opportunities to grow"
+              and that leadership positions are truly earned.</p>
+            <p><strong>Mary Barra (General Motors):</strong> "My definition of a great leader is someone who... gives
+              credit to the team for success." This culture of recognition is the foundation upon which fair promotion
+              systems are built.</p>
+            <p><strong>McKinsey & Company:</strong> Argues for a "talent-first" agenda, where CEOs ensure their best
+              people are moved into roles of maximum contribution, creating a true meritocracy.</p>
+            <p><strong>Meg Whitman (HP/eBay):</strong> For her, promotion was the logical and necessary outcome of
+              sustained, verifiable high achievement against clear goals.</p>
+            <p><strong>Michelle L. Cox (Author):</strong> Focuses on the leadership imperative to create inclusive
+              excellence, where high performers from all backgrounds are identified and elevated based on merit.</p>
+            <p><strong>Patty McCord & Reed Hastings (Netflix):</strong> Together they built a culture on "talent
+              density," operating like a "pro sports team" that puts the best player in every position and rewards them
+              accordingly.</p>
+            <p><strong>Peter Drucker (Management Guru):</strong> Taught that rank should not confer privilege, but
+              impose responsibility. Promotion is the act of placing greater responsibility on those most capable of
+              bearing it.</p>
+            <p><strong>Reed Hastings (Netflix):</strong> Built his company on "talent density," stating, "We are a pro
+              sports team." This philosophy mandates putting the best player in every position and rewarding them
+              accordingly.</p>
+            <p><strong>Richard Branson (Virgin Group):</strong> "Train people well enough so they can leave, treat them
+              well enough so they don't want to." Part of treating people well is offering them a future, and promotion
+              is the most tangible evidence of that path.</p>
+            <p><strong>Satya Nadella (Microsoft):</strong> Leads with a mission to "Empower every person... to achieve
+              more," a goal that starts with empowering your own top talent internally.</p>
+            <p><strong>Sheryl Sandberg (Facebook):</strong> Her advice to "take a seat on a rocket ship" applies to
+              leaders: identify your high performers—the rocket ships—and give them the mission to propel everyone
+              forward.</p>
+            <p><strong>Steve Jobs (Apple):</strong> "It doesn't make sense to hire smart people and tell them what to
+              do; we hire smart people so they can tell us what to do." Jobs believed you should never hire someone who
+              knows less about their job than you do, emphasizing the importance of bringing in and elevating
+              exceptional talent.</p>
+            <p><strong>Sundar Pichai (Google):</strong> Believes leaders must "focus on the success of others," which
+              requires creating visible pathways for their advancement.</p>
+            <p><strong>Warren Buffett (Berkshire Hathaway):</strong> Offers a choice: "You can hire good people and let
+              them work, or you can hire cheap people and tell them what they have to do." We choose to empower good
+              people.</p>
+
+            <p><strong>Adam Grant (Organizational Psychologist):</strong> Research shows that top performers aren't just
+              better individually—they elevate everyone around them. "Great employees don't just do great work; they
+              inspire it in others." Organizations must systematically identify and amplify these multiplier effects.
+            </p>
+            <p><strong>Alan Mulally (Ford):</strong> Transformed Ford by implementing "One Ford" vision that required
+              identifying and empowering the best talent at every level. "The best people create the best plans, and the
+              best plans executed by the best people create the best results."</p>
+            <p><strong>Arianna Huffington (Huffington Post):</strong> Built media empire on principle that "great talent
+              attracts great talent." Leaders must create magnetic cultures where high performers want to stay, grow,
+              and recruit others like themselves.</p>
+            <p><strong>Brad Smith (Intuit):</strong> Championed "design for delight" methodology that depends entirely
+              on having passionate, high-performing teams. "You can't deliver exceptional customer experiences without
+              exceptional employees leading the way."</p>
+            <p><strong>Carol Dweck (Stanford Psychologist):</strong> Her growth mindset research proves that high
+              performers with learning orientation drive organizational transformation. "The view you adopt for yourself
+              profoundly affects the way you lead your life—and your team."</p>
+            <p><strong>Daniel Pink (Author):</strong> In "Drive," demonstrates that top performers are intrinsically
+              motivated by autonomy, mastery, and purpose. Smart leaders create conditions where these drivers flourish,
+              making promotion and recognition essential retention tools.</p>
+            <p><strong>Diane Greene (VMware/Google Cloud):</strong> Believes in "hiring the best people and giving them
+              room to run." Her philosophy: exceptional performers need exceptional opportunities, or they'll find them
+              elsewhere.</p>
+            <p><strong>Drew Houston (Dropbox):</strong> "Your team is your competitive advantage." This makes
+              identifying, developing, and promoting top talent not just important—it's existential for long-term
+              success.</p>
+            <p><strong>Gary Vaynerchuk (VaynerMedia):</strong> "Skills can be taught. Character and work ethic are what
+              you hire for." Once you find people with both, your job as a leader is to clear every obstacle to their
+              advancement.</p>
+            <p><strong>Ginni Rometty (IBM):</strong> Led IBM's transformation by focusing on "new collar" skills and
+              promoting high performers who could adapt and learn. "Growth and comfort do not coexist—for individuals or
+              organizations."</p>
+            <p><strong>Howard Schultz (Starbucks):</strong> Built global brand on premise that "we're in the people
+              business serving coffee, not the coffee business serving people." This people-first approach requires
+              constant investment in your best talent.</p>
+            <p><strong>Jensen Huang (NVIDIA):</strong> Credits company's AI leadership to hiring "learning
+              machines"—people who can evolve faster than technology itself. "In our industry, the half-life of skills
+              is about two years. We need people who can reinvent themselves."</p>
+            <p><strong>John Doerr (Kleiner Perkins):</strong> Venture capitalist who backs teams, not just ideas. "Ideas
+              are easy. Execution is everything. And execution comes down to having the right people in the right roles
+              with the right support."</p>
+            <p><strong>Julie Sweet (Accenture):</strong> Leads with principle that "talent is the only sustainable
+              competitive advantage." This requires systematic identification and elevation of high performers across
+              all levels and backgrounds.</p>
+            <p><strong>Kevin Systrom (Instagram):</strong> Built billion-dollar platform with small team of exceptional
+              performers. "We always believed that a small team of great people could build something that millions of
+              people would love."</p>
+            <p><strong>Laszlo Bock (Google People Operations):</strong> Architect of Google's people systems, proved
+              through data that great managers and clear growth paths are what keep top performers engaged. "People
+              don't quit jobs, they quit managers—and unclear futures."</p>
+            <p><strong>Marc Benioff (Salesforce):</strong> Champions "Ohana culture" where family-like loyalty is earned
+              through investment in people's growth. "Companies that invest in their people's success create unbreakable
+              bonds and unbeatable performance."</p>
+            <p><strong>Nadya Zhexembayeva (Chief Reinvention Officer):</strong> Research shows that companies that
+              systematically develop internal talent outperform those that rely on external hiring by 3:1. "Your next
+              CEO is already in your building—if you're smart enough to find and develop them."</p>
+            <p><strong>Paul Polman (Unilever):</strong> Led sustainable business transformation by empowering
+              purpose-driven high performers. "Leadership is not about being in charge. It's about taking care of those
+              in your charge."</p>
+            <p><strong>Rana el Kaliouby (Emotion AI):</strong> Technology pioneer who believes diverse high performers
+              drive innovation breakthroughs. "The future belongs to companies that can identify and amplify human
+              potential in all its forms."</p>
+            <p><strong>Reid Hoffman (LinkedIn):</strong> Built professional networking platform on insight that careers
+              are about relationships and growth opportunities. "Your company's success depends on creating an
+              environment where great people can do their best work."</p>
+            <p><strong>Susan Wojcicki (YouTube):</strong> Scaled global video platform by focusing on creator-first
+              mentality internally. "The best products come from teams where everyone feels empowered to contribute
+              their unique perspective and skills."</p>
+            <p><strong>Tim Cook (Apple):</strong> Continues Jobs' legacy by ensuring Apple attracts and retains "wicked
+              smart" people. "We believe that people with passion can change the world for the better, and those are the
+              people we want to work with."</p>
+            <p><strong>Tony Hsieh (Zappos):</strong> Built company culture entirely around identifying and celebrating
+              people who embodied core values. "Your culture is your brand, and your brand is built by the people you
+              choose to promote and celebrate."</p>
+            <p><strong>Whitney Wolfe Herd (Bumble):</strong> Youngest female CEO to take company public, built success
+              on empowering high-performing women throughout organization. "When you invest in people who have been
+              underestimated, they become your most loyal and innovative contributors."</p>
+
+            <p><strong>Abigail Johnson (Fidelity Investments):</strong> Leads one of the world's largest asset managers
+              by identifying financial talent early and giving them increasing responsibility. "The best investment
+              strategy is investing in your people's potential to exceed expectations."</p>
+            <p><strong>Andy Jassy (Amazon Web Services):</strong> Built cloud computing dominance by recognizing that
+              technical excellence requires promoting the most capable engineers into leadership roles. "In technology,
+              your best developers often become your best leaders—if you give them the chance."</p>
+            <p><strong>Anne Wojcicki (23andMe):</strong> Genomics pioneer who believes diverse scientific talent drives
+              breakthrough discoveries. "The most important pattern recognition in business is recognizing patterns of
+              excellence in people before your competitors do."</p>
+            <p><strong>Arvind Krishna (IBM):</strong> Leads AI and hybrid cloud transformation by elevating engineers
+              who can bridge technical depth with business strategy. "The leaders who will define the next decade are
+              those who can translate complex technology into human progress."</p>
+            <p><strong>Barbara Corcoran (Shark Tank):</strong> Built real estate empire by spotting sales talent and
+              giving top performers their own territories. "I can teach anyone to sell, but I can't teach anyone to want
+              to win. When I find someone who wants to win, I give them everything they need to do it."</p>
+            <p><strong>Ben Silbermann (Pinterest):</strong> Scaled visual discovery platform by promoting product
+              managers who understood user behavior intuitively. "Great products come from people who think like users,
+              not just like builders."</p>
+            <p><strong>Bob Chapek (Disney):</strong> Theme park innovation leader who advanced by recognizing creative
+              talent across all Disney properties. "Magic happens when you put creative people in positions where their
+              imagination can impact millions of experiences."</p>
+            <p><strong>Brian Armstrong (Coinbase):</strong> Cryptocurrency platform success built on hiring and
+              promoting people who understood both technology and regulatory complexity. "The crypto revolution will be
+              led by people who can navigate both code and compliance—those are the people we must elevate."</p>
+            <p><strong>Charles Schwab (Charles Schwab Corporation):</strong> Democratized investing by promoting
+              client-focused employees who understood that technology should serve people, not replace them. "The best
+              financial advisors aren't the ones who know the most about markets—they're the ones who care most about
+              clients."</p>
+            <p><strong>Cheryl Sandberg (Meta):</strong> COO philosophy centered on "leaning in" by creating environments
+              where high-performing women can advance without artificial barriers. "Organizations that systematically
+              develop all their talent—not just half of it—will dominate the future."</p>
+            <p><strong>Daniel Ek (Spotify):</strong> Music streaming revolution led by developers and data scientists
+              who understood both technology and human emotion. "The intersection of data and creativity requires people
+              who can speak both languages fluently."</p>
+            <p><strong>Dara Khosrowshahi (Uber):</strong> Transformed company culture by identifying and promoting
+              leaders who could balance growth with responsibility. "Sustainable success requires leaders who can scale
+              businesses while building trust—internally and externally."</p>
+            <p><strong>David Faber (CNBC):</strong> Financial journalism excellence through identifying reporters who
+              combine analytical rigor with storytelling ability. "Great business journalism requires people who can
+              make complex financial concepts accessible without losing accuracy."</p>
+            <p><strong>Doug McMillon (Walmart):</strong> Retail transformation leader who promotes managers who
+              understand both digital innovation and supply chain fundamentals. "The future of retail belongs to people
+              who can think globally but execute locally, at massive scale."</p>
+            <p><strong>Edmund Lee (New York Times):</strong> Media industry analyst who recognizes that digital
+              transformation requires promoting journalists who understand both storytelling and technology. "Newsrooms
+              that elevate digitally native talent while respecting editorial traditions will define journalism's
+              future."</p>
+            <p><strong>Evan Spiegel (Snapchat):</strong> Social media innovation through promoting engineers who
+              understand ephemeral communication and privacy. "The platforms that will matter in ten years are being
+              built by people who understand that privacy isn't a feature—it's a foundation."</p>
+            <p><strong>Fei-Fei Li (Stanford AI Lab):</strong> Artificial intelligence research leader who believes
+              diverse AI talent prevents algorithmic bias. "AI that serves humanity requires teams that represent
+              humanity—in all its beautiful diversity."</p>
+            <p><strong>Ginni Rometty (Red Hat):</strong> Open source philosophy extends to talent development: the best
+              contributions should be recognized regardless of hierarchy. "Innovation happens when great ideas can come
+              from anywhere and be implemented by anyone with the skills to execute."</p>
+            <p><strong>Hamdi Ulukaya (Chobani):</strong> Yogurt industry disruptor who built success by promoting
+              employees who shared his mission-driven approach. "Business is about people serving people. The leaders
+              who understand this deeply are the ones who can build brands that matter."</p>
+            <p><strong>Ida Tin (Clue):</strong> Femtech pioneer who recognizes that women's health technology requires
+              promoting female engineers and designers. "Products that serve underserved markets require teams that
+              understand those markets from lived experience."</p>
+            <p><strong>Jack Ma (Alibaba):</strong> E-commerce platform success built on identifying employees who could
+              think like entrepreneurs within a large organization. "Today is difficult, tomorrow is more difficult, but
+              the day after tomorrow is beautiful. Most people die tomorrow evening, but we promote those who can see
+              the day after tomorrow."</p>
+            <p><strong>Katrina Lake (Stitch Fix):</strong> Data science and fashion intersection requires promoting
+              people who understand both algorithms and aesthetics. "The most successful companies sit at the
+              intersection of multiple disciplines—and so do the people who should lead them."</p>
+            <p><strong>Lei Jun (Xiaomi):</strong> Smartphone innovation through promoting engineers who could deliver
+              premium quality at accessible prices. "Disruption requires people who can engineer excellence while
+              maintaining discipline about costs and accessibility."</p>
+            <p><strong>Lisa Su (AMD):</strong> Semiconductor comeback story built on promoting engineers who could
+              compete with industry giants through superior architecture. "In technology, being second place means being
+              irrelevant. We promote people who refuse to accept second place in anything."</p>
+            <p><strong>Melinda French Gates (Pivotal Ventures):</strong> Philanthropy scaled through identifying program
+              managers who can translate resources into measurable social impact. "Changing the world requires people
+              who can bridge the gap between good intentions and effective execution."</p>
+            <p><strong>Michael Dell (Dell Technologies):</strong> Direct-to-consumer computing revolution by promoting
+              supply chain and customer service excellence. "Competitive advantage comes from executing better than
+              everyone else on the fundamentals—and that requires fundamentally excellent people."</p>
+            <p><strong>Oprah Winfrey (OWN Network):</strong> Media empire built on recognizing storytellers who could
+              create authentic connections with audiences. "Great content comes from people who understand that every
+              story is ultimately about human connection and transformation."</p>
+            <p><strong>Patrick Collison (Stripe):</strong> Payment infrastructure success through promoting engineers
+              who understood both technical elegance and regulatory complexity. "Developer tools that change industries
+              require people who think like developers but understand business like CEOs."</p>
+            <p><strong>Reshma Saujani (Girls Who Code):</strong> Nonprofit scaling through identifying educators who can
+              inspire young women to pursue technical careers. "Changing demographics in any field requires champions
+              who can see potential where others see barriers."</p>
+            <p><strong>Safra Catz (Oracle):</strong> Enterprise software leadership through promoting salespeople and
+              engineers who could navigate complex B2B relationships. "Enterprise success requires people who can build
+              long-term relationships while delivering short-term results."</p>
+            <p><strong>Thasunda Brown Duckett (TIAA):</strong> Financial services transformation by promoting advisors
+              who understand that retirement planning is ultimately about human dignity. "Financial services at their
+              best help people build the lives they want—advisors who understand this deserve the biggest
+              opportunities."</p>
+            <p><strong>Thomas Kurian (Google Cloud):</strong> Enterprise cloud adoption through promoting sales
+              engineers who could translate Google's consumer success to business markets. "B2B success requires people
+              who can maintain startup agility while building enterprise trust."</p>
+            <p><strong>Ursula Burns (Xerox):</strong> Manufacturing excellence through promoting engineers who could
+              innovate within complex industrial systems. "Innovation in established industries requires people who
+              respect what came before while imagining what comes next."</p>
+            <p><strong>Vlad Tenev (Robinhood):</strong> Financial democratization through promoting product managers who
+              understood that complex financial tools needed simple interfaces. "Making sophisticated financial products
+              accessible requires people who can think like experts but communicate like teachers."</p>
+            <p><strong>Wesley Chan (Google Ventures):</strong> Venture capital success through recognizing that the best
+              founders often emerge from operational roles in scaling companies. "The entrepreneurs who will build
+              tomorrow's companies are often hiding in today's best-performing teams."</p>
+            <p><strong>Zander Lurie (SurveyMonkey):</strong> Data platform growth through promoting analysts who could
+              turn survey responses into business intelligence. "Data becomes valuable when people who understand both
+              statistics and psychology can translate numbers into narratives."</p>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- SLIDE 3: "WALL OF ADVOCATES" (DEFINITIVE & GUARANTEED FIT) -->
+      <section id="advocates-slide" data-background-image="dark-gradient-background.jpg" data-background-size="cover">
+        <div class="slide3-content-wrapper">
+          <h2>The Advocates: Identifying and Promoting High Performers To Leadership</h2>
+          <div class="columns-container-3col scrollable-y">
+
+            <!-- Column 1: Iconic Tech & Business Leaders -->
+            <div class="column-layout-3col">
+              <h3>Iconic Tech & Business Leaders</h3>
+              <ul>
+                <li><strong>Abigail Johnson</strong> (Fidelity Investments)</li>
+                <li><strong>Adam Grant</strong> (Organizational Psychologist)</li>
+                <li><strong>Alan Mulally</strong> (Ford)</li>
+                <li><strong>Andy Grove</strong> (Intel)</li>
+                <li><strong>Andy Jassy</strong> (Amazon Web Services)</li>
+                <li><strong>Anne Wojcicki</strong> (23andMe)</li>
+                <li><strong>Arianna Huffington</strong> (Huffington Post)</li>
+                <li><strong>Barbara Corcoran</strong> (Shark Tank)</li>
+                <li><strong>Ben Silbermann</strong> (Pinterest)</li>
+                <li><strong>Bill Gates</strong> (Microsoft)</li>
+                <li><strong>Bob Chapek</strong> (Disney)</li>
+                <li><strong>Brad Smith</strong> (Intuit)</li>
+                <li><strong>Brian Armstrong</strong> (Coinbase)</li>
+                <li><strong>Brian Chesky</strong> (Airbnb)</li>
+                <li><strong>Charles Schwab</strong> (Charles Schwab Corp.)</li>
+                <li><strong>Cheryl Sandberg</strong> (Meta/Facebook)</li>
+                <li><strong>Dara Khosrowshahi</strong> (Uber)</li>
+                <li><strong>David Faber</strong> (CNBC)</li>
+                <li><strong>Diane Greene</strong> (VMware/Google Cloud)</li>
+                <li><strong>Drew Houston</strong> (Dropbox)</li>
+                <li><strong>Doug McMillon</strong> (Walmart)</li>
+                <li><strong>Edmund Lee</strong> (New York Times)</li>
+                <li><strong>Elon Musk</strong> (Tesla, SpaceX)</li>
+                <li><strong>Eric Schmidt</strong> (Google)</li>
+                <li><strong>Evan Spiegel</strong> (Snapchat)</li>
+                <li><strong>Fei-Fei Li</strong> (Stanford AI Lab)</li>
+                <li><strong>Gary Vaynerchuk</strong> (VaynerMedia)</li>
+                <li><strong>Ginni Rometty</strong> (IBM/Red Hat)</li>
+                <li><strong>Hamdi Ulukaya</strong> (Chobani)</li>
+                <li><strong>Howard Schultz</strong> (Starbucks)</li>
+                <li><strong>Ida Tin</strong> (Clue)</li>
+                <li><strong>Indra Nooyi</strong> (PepsiCo)</li>
+                <li><strong>Jack Ma</strong> (Alibaba)</li>
+                <li><strong>Jack Welch</strong> (General Electric)</li>
+                <li><strong>Jeff Bezos</strong> (Amazon)</li>
+                <li><strong>Jensen Huang</strong> (NVIDIA)</li>
+                <li><strong>Julie Sweet</strong> (Accenture)</li>
+                <li><strong>Katrina Lake</strong> (Stitch Fix)</li>
+                <li><strong>Kevin Systrom</strong> (Instagram)</li>
+                <li><strong>Larry Page</strong> (Google)</li>
+                <li><strong>Laszlo Bock</strong> (Google People Ops)</li>
+                <li><strong>Lei Jun</strong> (Xiaomi)</li>
+                <li><strong>Lisa Su</strong> (AMD)</li>
+                <li><strong>Marc Benioff</strong> (Salesforce)</li>
+                <li><strong>Marissa Mayer</strong> (Yahoo/Google)</li>
+                <li><strong>Mark Zuckerberg</strong> (Meta)</li>
+                <li><strong>Mary Barra</strong> (General Motors)</li>
+                <li><strong>Meg Whitman</strong> (HP/eBay)</li>
+                <li><strong>Melinda French Gates</strong> (Pivotal Ventures)</li>
+                <li><strong>Michael Dell</strong> (Dell Technologies)</li>
+                <li><strong>Oprah Winfrey</strong> (OWN Network)</li>
+                <li><strong>Patrick Collison</strong> (Stripe)</li>
+                <li><strong>Paul Polman</strong> (Unilever)</li>
+                <li><strong>Reed Hastings</strong> (Netflix)</li>
+                <li><strong>Reshma Saujani</strong> (Girls Who Code)</li>
+                <li><strong>Richard Branson</strong> (Virgin Group)</li>
+                <li><strong>Safra Catz</strong> (Oracle)</li>
+                <li><strong>Satya Nadella</strong> (Microsoft)</li>
+                <li><strong>Sheryl Sandberg</strong> (Facebook)</li>
+                <li><strong>Steve Jobs</strong> (Apple)</li>
+                <li><strong>Sundar Pichai</strong> (Google)</li>
+                <li><strong>Susan Wojcicki</strong> (YouTube)</li>
+                <li><strong>Thasunda Brown Duckett</strong> (TIAA)</li>
+                <li><strong>Thomas Kurian</strong> (Google Cloud)</li>
+                <li><strong>Tim Cook</strong> (Apple)</li>
+                <li><strong>Tony Hsieh</strong> (Zappos)</li>
+                <li><strong>Ursula Burns</strong> (Xerox)</li>
+                <li><strong>Vlad Tenev</strong> (Robinhood)</li>
+                <li><strong>Warren Buffett</strong> (Berkshire Hathaway)</li>
+                <li><strong>Whitney Wolfe Herd</strong> (Bumble)</li>
+                <li><strong>Zander Lurie</strong> (SurveyMonkey)</li>
+              </ul>
+            </div>
+
+            <!-- Column 2: Venture Capitalists, Authors & Thought Leaders -->
+            <div class="column-layout-3col">
+              <h3>Venture Capital, Authors & Thought Leaders</h3>
+              <ul>
+                <li><strong>Ben Horowitz</strong> (Andreessen Horowitz)</li>
+                <li><strong>Beth Miller</strong> (SmallBizClub)</li>
+                <li><strong>Chaka Booker</strong> (Forbes Contributor)</li>
+                <li><strong>Daniel Ek</strong> (Spotify)</li>
+                <li><strong>Daniel Pink</strong> (Author)</li>
+                <li><strong>Darren Ryan</strong> (DataDrivenInvestor)</li>
+                <li><strong>David Burkus</strong> (Author)</li>
+                <li><strong>Carol Dweck</strong> (Stanford Psychologist)</li>
+                <li><strong>Hendrith Vanlon Smith Jr.</strong></li>
+                <li><strong>Jane Sparrow</strong> (Forbes Contributor)</li>
+                <li><strong>Jim Collins</strong> ("Good to Great")</li>
+                <li><strong>John Doerr</strong> (Kleiner Perkins)</li>
+                <li><strong>John Hartley</strong> (Medium Contributor)</li>
+                <li><strong>Karin Hurt & David Dye</strong></li>
+                <li><strong>Michelle L. Cox</strong> (Author)</li>
+                <li><strong>Nadya Zhexembayeva</strong> (Chief Reinvention Officer)</li>
+                <li><strong>Peter Drucker</strong> (Management Guru)</li>
+                <li><strong>Rana el Kaliouby</strong> (Emotion AI)</li>
+                <li><strong>Reid Hoffman</strong> (LinkedIn)</li>
+                <li><strong>Ruth Gotian</strong> (Forbes Contributor)</li>
+                <li><strong>Wesley Chan</strong> (Google Ventures)</li>
+              </ul>
+            </div>
+
+            <!-- Column 3: Organizations & Research -->
+            <div class="column-layout-3col">
+              <h3>Organizations & Research</h3>
+              <ul>
+                <li><strong>DataDrivenInvestor</strong></li>
+                <li><strong>Forbes</strong></li>
+                <li><strong>Forbes Coaches Council</strong></li>
+                <li><strong>Gallup</strong> (Research & Analytics)</li>
+                <li><strong>Great Place to Work</strong></li>
+                <li><strong>Harvard Business Review</strong></li>
+                <li><strong>Journal of Business & Psychology</strong></li>
+                <li><strong>Let's Grow Leaders</strong></li>
+                <li><strong>McKinsey & Company</strong></li>
+                <li><strong>SmallBizClub</strong></li>
+                <li><strong>The Human Capital Hub</strong></li>
+                <li><strong>The Quota</strong></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- SLIDE 4: TOPIC 2 - SSO -->
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>2. Single Sign On: Modernizing Authentication</h2>
+          <div class="topic-container">
+            <div class="topic-column">
+              <h3>What is it?</h3>
+              <ul>
+                <li>A custom-built, production-ready SSO system that interfaces with Rutgers' central CAS identity
+                  provider.</li>
+                <li>Offers rock-solid compatibility with <strong>any mainstream programming language</strong>.</li>
+                <li>Integrates NetID logins with commercial software like <strong>Salesforce</strong>.</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>What is the impact?</h3>
+              <ul>
+                <li><strong>Unblocked All Modernization:</strong> The successful transition to TypeScript was only
+                  possible because of this project.</li>
+                <li><strong>Eliminated Language Lock-in:</strong> We are no longer constrained to specific technologies
+                  for authentication.</li>
+                <li><strong>Centralized & Secure:</strong> A single, reliable way to handle NetID logins for all
+                  applications.</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>Who has it helped?</h3>
+              <ul>
+                <li><strong>The Development Team:</strong> Can build in any language without custom CAS integration
+                  headaches.</li>
+                <li><strong>The Department:</strong> Gained immense flexibility in technology choices and hiring.</li>
+                <li><strong>The Entire University:</strong> This is a potential university-wide asset that simplifies
+                  development for any department.</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">This project was born purely from ambition. I saw a university-wide problem and built a
+            solution that provides value far beyond our department.</aside>
+        </div>
+
+        <div class="images-container side-by-side">
+          <a href="keycloak.png" target="_blank">
+            <img src="keycloak.png" alt="" class="slide-image fragment">
+          </a>
+        </div>
+
+        <div class="images-container side-by-side">
+          <a href="onboarding.png" target="_blank">
+            <img src="onboarding.png" alt="" class="slide-image fragment">
+          </a>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: TOPIC 3 - TECH STACK -->
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>3. Tech Stack: Upgrading Database & Dev Tools</h2>
+          <div class="topic-container">
+            <div class="topic-column">
+              <h3>What is it?</h3>
+              <ul>
+                <li>Strategic migration from weakly-typed PHP to strongly-typed <strong>TypeScript</strong> for backend
+                  and frontend.</li>
+                <li>Setup of <strong>Postgres databases</strong> that intelligently interface with legacy Oracle
+                  systems.</li>
+                <li>Adoption of modern frontend frameworks (<strong>React/NextJS</strong>) and UI testing tools
+                  (<strong>Storybook</strong>).</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>What is the impact?</h3>
+              <ul>
+                <li><strong>Drastic Bug Reduction:</strong> Code errors are now caught by the computer *before* release.
+                </li>
+                <li><strong>Faster Development:</strong> A unified language and modern tools increase efficiency and
+                  reduce time spent on bugs.</li>
+                <li><strong>Higher Talent Attraction:</strong> Our job postings with modern skills like TypeScript
+                  attract a better talent pool.</li>
+                <li><strong>Reduced Legal Risk:</strong> Proactive ADA compliance testing with Storybook.</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>Who has it helped?</h3>
+              <ul>
+                <li><strong>Developers:</strong> Have better tools and spend less time on frustrating, legacy-specific
+                  issues.</li>
+                <li><strong>Hiring Managers:</strong> Can recruit from a larger, more skilled pool of candidates.</li>
+                <li><strong>End Users:</strong> Interact with more stable, professional, and feature-rich applications.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">This was a fundamental shift from a reactive bug-fixing model to a proactive
+            quality-assurance model, improving everything from developer morale to the end-user experience.</aside>
+
+          <div class="images-container side-by-side">
+            <a href="storybook.png" target="_blank">
+              <img src="storybook.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+
+          <video class="video-overlay fragment" autoplay muted loop>
+            <source src="embarkturbo.mp4" type="video/mp4">
+          </video>
+
+          <video class="video-overlay fragment" autoplay muted loop>
+            <source src="DBTCompressed.mp4" type="video/mp4">
+          </video>
+
+          <video class="video-overlay fragment" autoplay muted loop>
+            <source src="DataProcessCompressed.mp4" type="video/mp4">
+          </video>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: TOPIC 4 - CONTAINERIZATION & CI -->
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>4. Containerization & CI: Reproducible Builds</h2>
+          <div class="topic-container">
+            <div class="topic-column">
+              <h3>What is it?</h3>
+              <ul>
+                <li>Implementation of <strong>Podman</strong> container system for Dev, QA, and Production
+                  environments.</li>
+                <li><strong>Reproducible builds</strong> of legacy applications by containerizing their old dependencies
+                  (e.g., specific Java versions).</li>
+                <li><strong>Continuous Integration (CI)</strong> pipelines that automatically deploy the latest code to
+                  servers.</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>What is the impact?</h3>
+              <ul>
+                <li><strong>Eliminated Version Conflicts:</strong> New applications no longer break old ones. Each app
+                  is perfectly isolated.</li>
+                <li><strong>Solved Legacy Builds:</strong> We can now build and run old applications reliably, forever.
+                </li>
+                <li><strong>Enhanced Security & Stability:</strong> Vulnerabilities can be isolated to a single
+                  container, not the entire server.</li>
+                <li><strong>Automated Workflows:</strong> Instant, labor-free deployments for testing and review.</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>Who has it helped?</h3>
+              <ul>
+                <li><strong>The Infrastructure Team:</strong> Massively reduced workload, fewer dependency issues, and
+                  fewer server-level tickets.</li>
+                <li><strong>Developers:</strong> Can build and deploy reliably without "it works on my machine"
+                  problems.</li>
+                <li><strong>Management & QA:</strong> Guaranteed access to up-to-date applications for testing.</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">Containers solved some of our biggest operational pain points. We no longer live in fear
+            of server-wide updates breaking critical applications.</aside>
+
+          <div class="images-container side-by-side">
+            <a href="caprover.png" target="_blank">
+              <img src="caprover.png" alt="" class="slide-image fragment">
+            </a>
+            <a href="rundeck.png" target="_blank">
+              <img src="rundeck.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+
+          <div class="images-container side-by-side">
+            <a href="server.png" target="_blank">
+              <img src="server.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+
+          <div class="images-container side-by-side">
+            <a href="cicd.png" target="_blank">
+              <img src="cicd.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+
+          <div class="images-container side-by-side">
+            <a href="rundeck.png" target="_blank">
+              <img src="rundeck.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: TOPIC 5 - OPEN SOURCE & PROJECT MANAGEMENT -->
+      <section>
+        <div class="slide-content-wrapper">
+          <h2>5. App Deployment, GitLab, & Project Management</h2>
+          <div class="topic-container">
+            <div class="topic-column">
+              <h3>What is it?</h3>
+              <ul>
+                <li>Using containers to enable <strong>trivial exploration and deployment</strong> of powerful Open
+                  Source Software (OSS).</li>
+                <li>Establishing disciplined <strong>GitLab management</strong> as the single source of truth for all
+                  projects.</li>
+                <li>Providing mentorship on modern project management and development best practices.</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>What is the impact?</h3>
+              <ul>
+                <li><strong>Accelerated Innovation:</strong> We can test and adopt valuable OSS tools in hours, not
+                  weeks, at little to no cost.</li>
+                <li><strong>Improved Collaboration:</strong> A standardized, reliable workflow for code management
+                  ensures team alignment.</li>
+                <li><strong>Elevated Team Skills:</strong> Mentorship and modern processes improve the capabilities of
+                  the entire team.</li>
+              </ul>
+            </div>
+            <div class="topic-column">
+              <h3>Who has it helped?</h3>
+              <ul>
+                <li><strong>The Department:</strong> Gains access to powerful new software capabilities with minimal
+                  cost and effort.</li>
+                <li><strong>The Development Team:</strong> Has a clear, modern, and efficient process for collaboration.
+                </li>
+                <li><strong>Future Hires:</strong> Can onboard quickly into a standardized and well-documented system.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">This is about building a sustainable and scalable culture. By making it easy to use open
+            source and standardizing on GitLab, we've created a system that encourages innovation and teamwork.</aside>
+
+          <div class="images-container side-by-side">
+            <a href="chatwoot.png" target="_blank">
+              <img src="chatwoot.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+          <div class="images-container side-by-side">
+            <a href="dashy.png" target="_blank">
+              <img src="dashy.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+
+          <div class="images-container side-by-side">
+            <a href="humhub.png" target="_blank">
+              <img src="humhub.png" alt="" class="slide-image fragment">
+            </a>
+            <a href="humhub2.png" target="_blank">
+              <img src="humhub2.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+
+          <div class="images-container side-by-side">
+            <a href="snipeit.png" target="_blank">
+              <img src="snipeit.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+          <div class="images-container side-by-side">
+            <a href="uptime.png" target="_blank">
+              <img src="uptime.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+
+          <div class="images-container side-by-side">
+            <a href="zammad.png" target="_blank">
+              <img src="zammad.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+
+          <div class="images-container side-by-side">
+            <a href="miniologo.png" class="" target="_blank">
+              <img src="miniologo.png" alt="" class="slide-image fragment">
+            </a>
+            <a href="postgres.png" target="_blank">
+              <img src="postgres.png" alt="" class="slide-image fragment">
+            </a>
+            <a href="elastic.png" target="_blank">
+              <img src="elastic.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section style="text-align: center;">
+        <div class="slide-content-wrapper" style="width: 100vh; height: 100vh;">
+          <h2>5.2: Gitlab Continued</h2>
+          <video class="video-overlay fragment" autoplay muted loop>
+            <source src="gitlabpm.mp4" type="video/mp4">
+          </video>
+          <video class="video-overlay fragment" autoplay muted loop>
+            <source src="gitlabpmlabels.mp4" type="video/mp4">
+          </video>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: CONCLUSION -->
+      <section style="text-align: center;">
+        <div class="slide-content-wrapper">
+          <h2>Summary of Contributions</h2>
+          <p>Consistently delivering on core responsibilities while transforming Application Development by improving
+            our:</p>
+          <br>
+          <ul style="display: inline-block; text-align: left; font-size: 1.1em;">
+            <li><strong>Technology:</strong> Modern, stable, and attractive to new talent.</li>
+            <li><strong>Process:</strong> Automated, reliable, and secure.</li>
+            <li><strong>Capability:</strong> Faster development and increased capacity for innovation.</li>
+          </ul>
+
+          <div class="images-container side-by-side">
+            <a href="swais.png" target="_blank">
+              <img src="swais.png" alt="" class="slide-image fragment">
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9: WHAT'S NEXT -->
+      <section style="text-align: center;">
+        <div class="slide-content-wrapper">
+          <h2>Enabling Continued Growth</h2>
+          <p>Having laid these foundations, the focus now shifts from building the system to maximizing its potential.
+          </p>
+          <br>
+          <h4>Discussion:</h4>
+          <p>What is the path forward to best leverage these capabilities and continue to drive this level of innovation
+            for the department?</p>
+          <aside class="notes">I have demonstrated technical excellence and a commitment to improving our department. I
+            am seeking a more clearly defined path for promotion to continue delivering high-impact work.</aside>
+        </div>
+      </section>
+
+      <section style="text-align: center;">
+        <div class="slide-content-wrapper">
+          <h2>Request for Advancement</h2>
+          <a href="https://uhr.rutgers.edu/talent-management/generic-summaries-information-technology">UHR Website on
+            Information Technology</a>
+          <br>
+          <img src="devGrade7.png" alt="">
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- GSAP Core Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- Reveal.js Core and Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    const deck = new Reveal({
+      hash: true,
+      plugins: [RevealNotes]
+    });
+    deck.initialize();
+
+    // GSAP Animation Logic
+    let cinematicAnimation;
+
+    deck.on('slidechanged', event => {
+      if (event.currentSlide.id === 'cinematic-slide') {
+
+        if (cinematicAnimation) {
+          cinematicAnimation.kill();
+        }
+
+        cinematicAnimation = gsap.timeline();
+
+        // 1. Fade in title
+        cinematicAnimation.to(".cinematic-title", {
+          opacity: 1,
+          duration: 0.7,
+          delay: 0.1
+        });
+
+        // 2. Fade out title
+        cinematicAnimation.to(".cinematic-title", {
+          opacity: 0,
+          duration: 0.7
+        }, ">+0.2");
+
+        // 3. Start crawl animation (Calibrated for the definitive text length)
+        cinematicAnimation.to(".crawl-wrapper", {
+          duration: 180, // DURATION 
+          y: "-450%",   // Y-DISTANCE
+          ease: "linear"
+        }, "-=0.7");
+
+      } else {
+        if (cinematicAnimation) {
+          cinematicAnimation.kill();
+          gsap.set(".cinematic-title", {opacity: 0});
+          gsap.set(".crawl-wrapper", {y: "0%"});
+        }
+      }
+    });
+
+    // THE FIX PART 2: Explicitly control video playback on fragment events
+    deck.on('fragmentshown', event => {
+      // Check if the shown fragment is a video overlay
+      if (event.fragment.matches('video.video-overlay')) {
+        const video = event.fragment;
+        video.currentTime = 0; // Rewind to the start
+        video.play();          // Play the video
+      }
+    });
+
+    deck.on('fragmenthidden', event => {
+      // Check if the hidden fragment is a video overlay
+      if (event.fragment.matches('video.video-overlay')) {
+        const video = event.fragment;
+        video.pause(); // Pause the video when navigating away
+      }
+    });
+  </script>
+</body>
+
+</html>
